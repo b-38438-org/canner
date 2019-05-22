@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {Button, Icon, Modal} from 'antd';
-import {Context} from 'canner-helpers';
 import {injectIntl} from 'react-intl';
+import Context from './context';
 const {confirm} = Modal;
 
 export default injectIntl(BackButton)
@@ -38,7 +38,7 @@ function BackButton({intl, hideBackButton}) {
       resetCondFn();
     }
   }
-  
+
   return (
     <Button onClick={onClick} style={{marginBottom: 16}} data-testid="back-button">
       <Icon type="arrow-left" /> {intl.formatMessage({id: 'hocs.route.backText'})}
