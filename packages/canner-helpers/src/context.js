@@ -27,7 +27,8 @@ const functions = [
   'renderChildren',
   'renderComponent',
   'renderConfirmButton',
-  'renderCancelButton'
+  'renderCancelButton',
+  'formType'
 ];
 
 functions.forEach(functionName => {
