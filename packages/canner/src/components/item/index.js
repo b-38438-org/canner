@@ -4,7 +4,6 @@ import {isEmpty, isEqual, isFunction} from 'lodash';
 import {BackButton} from 'canner-helpers';
 import Label from './Label';
 import ErrorMessage from './ErrorMessage';
-import Buttons from './Buttons';
 import {RENDER_TYPE} from '../../hooks/useRenderType';
 
 export default React.memo(function CannerItem(props) {
@@ -22,8 +21,6 @@ export default React.memo(function CannerItem(props) {
     errorInfo,
     renderType,
     render,
-    shouldRenderSubmitButton,
-    shouldRenderCancelButton,
   } = props;
   const labelCol = layout === 'horizontal' ? props.labelCol || {
     span: 6
@@ -60,10 +57,6 @@ export default React.memo(function CannerItem(props) {
         )}
         {renderType === RENDER_TYPE.CHILDREN && renderChildren({refId})}
         {renderType === RENDER_TYPE.COMPONENT && render(props)}
-        <Buttons
-          shouldRenderCancelButton={shouldRenderCancelButton}
-          shouldRenderSubmitButton={shouldRenderSubmitButton}
-        />
         {
           error && (
             <ErrorMessage>
