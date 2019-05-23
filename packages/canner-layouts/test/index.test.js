@@ -33,6 +33,13 @@ const schema = {
     title: 'Posts',
     type: 'array',
     items: {}
+  },
+  categories: {
+    keyName: 'categories',
+    path: 'categories',
+    title: 'Categories',
+    type: 'object',
+    items: {}
   }
 };
 
@@ -63,6 +70,12 @@ describe('canner-layouts', () => {
       );
 
       expect(getByTestId('list-body')).toBeInTheDocument();
+      const backButtonElement = document.querySelector('back-button')
+      const confirmButtonElement = document.querySelector('confirm-button')
+      const resetButtonElement = document.querySelector('reset-button')
+      expect(backButtonElement).not.toBeInTheDocument();
+      expect(confirmButtonElement).not.toBeInTheDocument();
+      expect(resetButtonElement).not.toBeInTheDocument();
     });
 
     it('Should render for specifying the listComponent props', () => {
@@ -100,6 +113,9 @@ describe('canner-layouts', () => {
       );
 
       expect(getByTestId('create-body')).toBeInTheDocument();
+      expect(getByTestId('back-button')).toHaveTextContent('Back');
+      expect(getByTestId('confirm-button')).toHaveTextContent('Submit');
+      expect(getByTestId('reset-button')).toHaveTextContent('Cancel');
     });
 
     it('Should render for specifying the createComponent props', () => {
@@ -122,7 +138,7 @@ describe('canner-layouts', () => {
   });
 
   describe('if formType is UPDATE', () => {
-    it('Should render <DefaultUpdateBody />', () => {
+    it('Should render <DefaultUpdateBody /> with array type', () => {
       const {getByTestId} = render(
         <CannerHelperContext>
           <Context.Provider value={{
@@ -138,6 +154,30 @@ describe('canner-layouts', () => {
       );
 
       expect(getByTestId('update-body')).toBeInTheDocument();
+      expect(getByTestId('back-button')).toHaveTextContent('Back');
+      expect(getByTestId('confirm-button')).toHaveTextContent('Submit');
+      expect(getByTestId('reset-button')).toHaveTextContent('Cancel');
+    });
+
+    it('Should render <DefaultUpdateBody /> with object type', () => {
+      const {getByTestId} = render(
+        <CannerHelperContext>
+          <Context.Provider value={{
+            formType: FORM_TYPE.UPDATE,
+            renderChildren
+          }}>
+            <Body
+              routes={["categories"]}
+              schema={schema}
+            />
+          </Context.Provider>
+        </CannerHelperContext>
+      );
+
+      expect(getByTestId('update-body')).toBeInTheDocument();
+      expect(getByTestId('back-button')).toHaveTextContent('Back');
+      expect(getByTestId('confirm-button')).toHaveTextContent('Submit');
+      expect(getByTestId('reset-button')).toHaveTextContent('Reset');
     });
 
     it('Should render for specifying the updateComponent props', () => {
