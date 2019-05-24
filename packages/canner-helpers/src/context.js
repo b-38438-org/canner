@@ -10,7 +10,8 @@ export const defaultContext =  {
   imageStorage: null,
   fileStorage: null,
   refId: null,
-  client: null
+  client: null,
+  formType: null,
 };
 
 const functions = [
@@ -27,8 +28,7 @@ const functions = [
   'renderChildren',
   'renderComponent',
   'renderConfirmButton',
-  'renderCancelButton',
-  'formType'
+  'renderCancelButton'
 ];
 
 functions.forEach(functionName => {
