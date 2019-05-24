@@ -1,6 +1,7 @@
 // @flow
 
-import React, { useContext } from 'react';
+import * as React from 'react';
+import { useContext } from 'react';
 // $FlowFixMe: antd Breadcrumb
 import {Breadcrumb, Icon} from 'antd';
 import {Context, Item} from 'canner-helpers';
@@ -16,9 +17,9 @@ type Props = {
   schema: Object,
   routes: Array<string>,
 
-  createComponent?: any,
-  listComponent?: any,
-  updateComponent?: any,
+  createComponent?: React.ComponentType<Props>,
+  listComponent?: React.ComponentType<Props>,
+  updateComponent?: React.ComponentType<Props>,
 };
 
 export default function Body({ createComponent, listComponent, updateComponent, ...restProps}: Props) {
